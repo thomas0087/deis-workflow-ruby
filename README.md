@@ -5,6 +5,8 @@ Deis Workflow Controller API bindings for Ruby.
 
 Compliant with `Controller API v2.2`.
 
+[![Gem Version](https://badge.fury.io/rb/deis-workflow.svg)](https://badge.fury.io/rb/deis-workflow)
+
 Installing
 ----------
 
