@@ -67,6 +67,10 @@ module DeisWorkflow
       get("#{app_path(app_name)}/logs/").parsed_response
     end
 
+    def app_releases(app_name)
+      get("#{app_path(app_name)}/releases").parsed_response
+    end
+
     ### App pod related methods
 
     def app_scale(app_name, pod_type, desired_pod_count)
@@ -112,6 +116,21 @@ module DeisWorkflow
         :values => values
       }).success?
     end
+
+    def app_limit_set(app_name, limit_type, pod_type, limit)
+      return false unless %w(memory cpu).include?(limit_type)
+      post("#{app_path(app_name)}/config/", {
+        limit_type => { pod_type => limit }
+      }).success?
+    end
+
+    def app_limit_unset(app_name, limit_type, pod_type)
+      return false unless %w(memory cpu).include?(limit_type)
+      post("#{app_path(app_name)}/config/", {
+        limit_type => { pod_type => nil }
+      }).success?
+    end
+
 
     private
 
