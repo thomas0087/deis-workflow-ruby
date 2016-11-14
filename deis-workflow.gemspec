@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'deis-workflow'
-  s.version     = '0.0.1'
-  s.date        = '2016-10-24'
+  s.version     = '0.0.2'
+  s.date        = '2016-11-14'
   s.summary     = "Deis Workflow library"
   s.description = "A Deis Workflow Controller API library for Ruby"
   s.authors     = ["Thomas Davies"]
