@@ -29,7 +29,7 @@ module DeisWorkflow
     def whoami
       get('/v2/auth/whoami').parsed_response['username']
     end
-    
+
     def users_list
       get('/v2/users').parsed_response['results']
     end
@@ -104,7 +104,7 @@ module DeisWorkflow
     end
 
     ### App config methods
-    
+
     def config_list(app_name)
       get("#{app_path(app_name)}/config/").parsed_response['values']
     end
@@ -131,6 +131,20 @@ module DeisWorkflow
       }).success?
     end
 
+    # App domain methods
+    def domains_list(app_name)
+      get("#{app_path(app_name)}/domains/").parsed_response['results']
+    end
+
+    def domains_add(app_name, domain)
+      post("#{app_path(app_name)}/domains/", {
+        domain: domain
+      }).success?
+    end
+
+    def domains_remove(app_name, domain)
+      delete("#{app_path(app_name)}/domains/#{domain}").success?
+    end
 
     private
 
@@ -154,7 +168,7 @@ module DeisWorkflow
     end
 
     def delete(path)
-      HTTParty.post(
+      HTTParty.delete(
         "#{@controller_uri}#{path}",
         :headers => @headers
       )
